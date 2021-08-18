@@ -34,6 +34,7 @@
     "docs:extract": "api-extractor run -c ./api-extractor.json",
     "docs:generate": "api-documenter markdown -i ./docs/temp -o ./docs/api",
     "test": "jest --coverage",
+    "test:all": "npm run test && npm run test:integration",
     "test:integration": "jest -c jest.integration.config.js",
     "transpile": "tsc",
     "transpile:clean": "rimraf ./dist",
