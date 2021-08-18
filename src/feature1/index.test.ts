@@ -1,9 +1,12 @@
 import { expect } from 'chai';
 
-import Feat from './index';
+import { say, getAverage } from './index';
 
-describe('Test', () => {
-  it('outputs Hello World', () => {
-    expect(Feat('World')).equal('Hello World');
+describe('Feature1', () => {
+  it('say - outputs Hello World', () => {
+    expect(say('World')).equal('Hello World');
+  });
+  it('getAverage - returns average', () => {
+    expect(getAverage(5, 10)).equal(7.5);
   });
 });

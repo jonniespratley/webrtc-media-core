@@ -4,8 +4,14 @@
 
 ## webrtc-media-core package
 
+## Functions
+
+| Function                                              | Description                                              |
+| ----------------------------------------------------- | -------------------------------------------------------- |
+| [getAverage(x, y)](./webrtc-media-core.getaverage.md) | <b><i>(BETA)</i></b> Returns the average of two numbers. |
+
 ## Variables
 
-| Variable                            | Description |
-| ----------------------------------- | ----------- |
-| [feat](./webrtc-media-core.feat.md) | Feature     |
+| Variable                          | Description |
+| --------------------------------- | ----------- |
+| [say](./webrtc-media-core.say.md) | Feature     |
