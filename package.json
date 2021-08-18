@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "",
-    "clean": "npm run transpile:clean && npm run docs:clean",
+    "clean": "rimraf coverage dist junit.xml",
     "dev": "vite",
     "serve": "vite preview",
     "build": "vite build",
@@ -33,14 +33,16 @@
     "docs:clean": "rimraf ./docs/{api,temp}",
     "docs:extract": "api-extractor run -c ./api-extractor.json",
     "docs:generate": "api-documenter markdown -i ./docs/temp -o ./docs/api",
+    "test": "jest --coverage",
     "test:integration": "jest -c jest.integration.config.js",
-    "test:unit": "jest -c jest.unit.config.js",
     "transpile": "tsc",
     "transpile:clean": "rimraf ./dist",
     "transpile:validate": "tsc --noemit",
     "transpile:watch": "tsc --watch",
     "pre-commit": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "prettier-eslint \"src/**/*.ts\"  --list-different",
+    "lint:fix": "npm run lint -- --write"
   },
   "dependencies": {},
   "devDependencies": {
@@ -50,7 +52,7 @@
     "@microsoft/api-extractor": "^7.18.5",
     "@types/chai": "^4.2.21",
     "@types/jest": "^27.0.1",
-    "@types/node": "16.6.1",
+    "@types/node": "15.14.7",
     "@types/sinon": "^10.0.2",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
@@ -65,9 +67,15 @@
     "eslint-plugin-tsdoc": "^0.2.14",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
+    "jest-circus": "^27.0.6",
+    "jest-environment-jsdom": "^27.0.6",
+    "jest-environment-node": "^27.0.6",
+    "jest-junit": "^12.2.0",
     "jest-playwright-preset": "^1.7.0",
+    "jest-runner": "^27.0.6",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
+    "prettier-eslint-cli": "^5.0.1",
     "rimraf": "^3.0.2",
     "rollup-plugin-copy": "^3.4.0",
     "sinon": "^11.1.2",
@@ -77,11 +85,48 @@
     "vite-plugin-checker": "^0.3.4"
   },
   "lint-staged": {
-    "**/*.+(js|json|ts)": [
-      "eslint --fix"
+    "**/*.+(js|ts)": [
+      "npm run lint"
     ],
-    "**/*.{js,ts,json,html,css,md}": [
+    "**/*.{json,html,css,md}": [
       "prettier --write --ignore-unknown"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageProvider": "v8",
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 100,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "preset": "ts-jest/presets/default-esm",
+    "globals": {
+      "ts-jest": {
+        "useESM": true
+      }
+    },
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx",
+      "json"
+    ],
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
     ]
   }
 }
