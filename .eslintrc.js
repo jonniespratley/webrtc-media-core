@@ -53,6 +53,8 @@ module.exports = {
         devDependencies: ['*.config*.*', '**/*.test.*'],
       },
     ],
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'class-methods-use-this': 'warn',
   },
   overrides: [
     {

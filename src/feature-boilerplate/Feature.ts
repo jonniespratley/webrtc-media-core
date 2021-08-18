@@ -2,11 +2,12 @@ export class Feature {
   private static Feature: Feature;
 
   private constructor() {
-    console.log('This is the constructor');
+    console.warn('This is the constructor');
   }
 
   /**
-   *
+   * Creates a new instance or returns existing instance.
+   * @returns Feature
    */
   public static getInstance(): Feature {
     if (!Feature.Feature) {

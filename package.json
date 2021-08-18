@@ -42,8 +42,8 @@
     "transpile:watch": "tsc --watch",
     "pre-commit": "lint-staged",
     "prepare": "husky install",
-    "lint": "prettier-eslint \"src/**/*.ts\"  --list-different",
-    "lint:fix": "npm run lint -- --write"
+    "lint": "eslint src/**",
+    "lint:fix": "prettier-eslint 'src/**/*.ts' --list-different --write"
   },
   "dependencies": {},
   "devDependencies": {
