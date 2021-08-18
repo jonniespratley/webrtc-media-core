@@ -1,5 +1,8 @@
-# Webstorm 
+# Webstorm
 .idea
+
+# Other
+.DS_Store
 
 # Logs
 logs
